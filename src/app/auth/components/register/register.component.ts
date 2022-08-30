@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core'
+import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'mc-register',
@@ -6,7 +7,23 @@ import {Component, OnInit} from '@angular/core'
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  form: FormGroup
 
-  ngOnInit(): void {}
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initializeForm()
+  }
+
+  initializeForm(): void {
+    this.form = this.fb.group({
+      usaername: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    })
+  }
+
+  onSubmit() {
+    this.form.valid
+  }
 }
